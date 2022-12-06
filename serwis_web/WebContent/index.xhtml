@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/page-template.xhtml">
+
+	<ui:define name="pageContent">
+	<h:commandButton value="Zaloguj" action="#{loginBB.doLogout()}" update="msg" />
+			<p:panel header="Opcje wyszukiwania" toggleable="true" collapsed="true"
+		style="margin-bottom: 1em;">
+		<h:form>
+			<h:panelGrid columns="2" cellpadding="5">
+				<h:outputLabel value="login:" />
+				<p:inputText value="lllllll" /> <!-- value="#{userListBB.login}" -->
+				<p:commandButton value="Szukaj" update="form-table" />
+			</h:panelGrid>
+		</h:form>
+	</p:panel>
+
+	<p:messages />
+
+	<h:form id="form-table" style="margin-bottom:1em;">
+
+		<p:commandButton value="Dodaj nową osobę" style="margin-bottom:1em;"/> <!-- action="#{personListBB.newPerson()}" -->
+
+		<p:dataTable value="#{userListBB.list}" var="u">
+
+			<p:column priority="5">
+				<f:facet name="header">
+					<h:outputText value="login" />
+				</f:facet>
+				<h:outputText value="#{u.login}"  /> 
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="pass" />
+				</f:facet>
+				<h:outputText value="#{u.password}" />
+			</p:column>
+
+		<!--  	<p:column>
+				<f:facet name="header">
+					<h:outputText value="opcje" />
+				</f:facet>
+
+				<p:commandButton value="Edytuj" /> action="#{personListBB.editPerson(p)}" 
+
+				<p:commandButton value="Usuń" />  action="#{personListBB.deletePerson(p)}" update="@form"
+
+				<p:button outcome="personEditGET" value="Edytuj (GET)">
+					<f:param name="p" value="#{p.idperson}" /> 
+				</p:button>
+			</p:column> -->
+
+		</p:dataTable>
+	</h:form>
+	</ui:define>
+</ui:composition>
+</html>

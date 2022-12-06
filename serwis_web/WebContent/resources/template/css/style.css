@@ -1,0 +1,19 @@
+body{
+	font-family: helvetica,verdana,arial;
+	background: url("../img/background.png.jsf?ln=template") no-repeat center center fixed;
+	background-size: cover;
+	margin:0;
+}
+
+.bottom-space{
+	margin-bottom: 2em;
+}
+
+.top-space{
+	margin-top: 2em;
+}
+
+#page_wrapper{
+	margin: 2em;
+	min-width: 700px;
+}
