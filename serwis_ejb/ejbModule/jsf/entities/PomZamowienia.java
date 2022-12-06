@@ -14,29 +14,29 @@ import javax.persistence.*;
 public class PomZamowienia implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	private int id;
+	@EmbeddedId
+	private PomZamowieniaPK id;
 
 	private double cena;
 
 	//bi-directional many-to-one association to Naprawa
 	@ManyToOne
-	@JoinColumn(name="id_naprawy")
+	@JoinColumn(name="id_naprawy", insertable=false, updatable=false)
 	private Naprawa naprawa;
 
 	//bi-directional many-to-one association to Zamowienie
 	@ManyToOne
-	@JoinColumn(name="id_zamowienia")
+	@JoinColumn(name="id_zamowienia", insertable=false, updatable=false)
 	private Zamowienie zamowienie;
 
 	public PomZamowienia() {
 	}
 
-	public int getId() {
+	public PomZamowieniaPK getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(PomZamowieniaPK id) {
 		this.id = id;
 	}
 

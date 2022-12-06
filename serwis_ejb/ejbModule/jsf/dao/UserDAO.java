@@ -1,5 +1,6 @@
 package jsf.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -16,7 +17,7 @@ import jsf.entities.User;
 
 @Stateless
 public class UserDAO {
-	//private final static String UNIT_NAME = "serwis-simplePU";
+	private final static String UNIT_NAME = "serwis-simplePU";
 
 	@PersistenceContext//(unitName = UNIT_NAME)
 	protected EntityManager em;
@@ -92,4 +93,43 @@ public class UserDAO {
 
 		return list;
 	} 
+	public User getUserFromDatabase(String login, String pass) {
+		User u = null;
+
+		Query query = em.createQuery("select u FROM User u where u.login=:login");
+		query.setParameter("login", login);
+
+		try {
+			User user = (User) query.getSingleResult();
+
+			if (login.equals(user.getLogin()) && pass.equals(user.getPassword())) {
+				u = new User();
+				u.setLogin(login);
+				u.setPassword(pass);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return u;
+	}
+
+	// simulate retrieving roles of a User from DB
+	public List<String> getUserRolesFromDatabase(User user) {
+	
+		
+		
+		ArrayList<String> roles = new ArrayList<String>();
+
+		if (user.getLogin().equals("user1")) {
+			roles.add("user");
+		}
+		if (user.getLogin().equals("user2")) {
+			roles.add("manager");
+		}
+		if (user.getLogin().equals("admin")) {
+			roles.add("admin");
+		}
+		return roles;
+	}
 }
