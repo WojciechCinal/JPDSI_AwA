@@ -4,7 +4,9 @@ import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 import javax.faces.simplesecurity.RemoteClient;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -42,6 +44,7 @@ public class LoginBB {
 
 	@Inject
 	UserDAO userDAO;
+
 
 	public String doLogin() {
 		FacesContext ctx = FacesContext.getCurrentInstance();

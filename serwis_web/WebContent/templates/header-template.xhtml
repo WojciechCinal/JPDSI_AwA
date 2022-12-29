@@ -1,0 +1,23 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+	<p:panel toggleable="true" styleClass="header">
+<h:form>  
+    <p:growl id="messages"/>
+ 
+    <p:menubar>
+        <p:menuitem icon="pi pi-home" value="Strona główna" url="#"> </p:menuitem>
+        <p:menuitem icon="fa fa-wrench" value="Oferta" url="#"> </p:menuitem>
+        <p:menuitem icon="fa fa-list-ul" value="Zamówienia" url="#"> </p:menuitem>
+
+        <f:facet name="options">
+            
+            <p:commandButton type="button" value="Logout" icon="fa fa-sign-out" />
+        </f:facet>
+    </p:menubar>
+</h:form>
+	</p:panel>
+</ui:composition>
