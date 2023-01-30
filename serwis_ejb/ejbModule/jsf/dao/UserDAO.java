@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -104,11 +105,12 @@ public class UserDAO {
 
 			if (login.equals(user.getLogin()) && pass.equals(user.getPassword())) {
 				u = new User();
+				u.setIdUser(user.getIdUser());
 				u.setLogin(login);
 				u.setPassword(pass);
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (NoResultException nre) {
+		
 		}
 
 		return u;
@@ -121,11 +123,8 @@ public class UserDAO {
 		
 		ArrayList<String> roles = new ArrayList<String>();
 
-		if (user.getLogin().equals("user1")) {
+		if (user.getLogin().equals("user")) {
 			roles.add("user");
-		}
-		if (user.getLogin().equals("user2")) {
-			roles.add("manager");
 		}
 		if (user.getLogin().equals("admin")) {
 			roles.add("admin");

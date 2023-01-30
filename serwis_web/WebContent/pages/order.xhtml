@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition template="/templates/main-template.xhtml">
+	<ui:define name="content">
+		<p:spacer width="auto" height="120" />
+		<p:messages />
+
+		
+			<p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
+
+			<p:fieldset legend="Zamówienia" style="margin-bottom:10px">
+				<h:panelGrid columns="6" cellpadding="5">
+
+					<h:form id="form-table" style="margin-bottom:1em;">
+						<p:commandButton value="Dodaj zamówienie"
+							style="margin-bottom:1em;" action="#{zamowienieListBB.Add()}" />
+
+						<!-- action="#{personListBB.newPerson()}" -->
+
+						<p:dataTable value="#{zamowienieListBB.list}" var="z">
+							 <p:column priority="5">
+								<f:facet name="header">
+									<h:outputText value="Dodano przez:" />
+								</f:facet>
+								<h:outputText value="#{z.user.login}" />
+							</p:column>
+							<p:column priority="5">
+								<f:facet name="header">
+									<h:outputText value="Data" />
+								</f:facet>
+								<h:outputText value="#{z.data}" />
+							</p:column>
+							<p:column priority="5">
+								<f:facet name="header">
+									<h:outputText value="Marka" />
+								</f:facet>
+								<h:outputText value="#{z.marka}" />
+							</p:column>
+							<p:column priority="5">
+								<f:facet name="header">
+									<h:outputText value="Model" />
+								</f:facet>
+								<h:outputText value="#{z.model}" />
+							</p:column>
+							<p:column priority="5">
+								<f:facet name="header">
+									<h:outputText value="Numer rejestracyjny" />
+								</f:facet>
+								<h:outputText value="#{z.nrRejestracyjny}" />
+							</p:column>
+							
+							
+							
+							<p:column priority="5">
+								<f:facet name="header">
+									<h:outputText value="Opcje" />
+								</f:facet>
+								<!-- <p:commandButton value="Pokaż szczegóły" /> -->
+								
+								<!-- <ui:repeat value="#{z.pomZamowienias}" var="y"> </ui:repeat>-->
+								<h:outputText value="#{zamowienieListBB.resetsuma()}"/>
+								<ul>
+								<ui:repeat value="#{z.pomZamowienias}" var="y">
+								
+								<li><h:outputText value="#{y.naprawa.nazwaNaprawy}"/> (<h:outputText value="#{y.cena}" /> zł)</li>
+								<h:outputText value="#{zamowienieListBB.addsuma(y.cena)}"/>
+								
+								</ui:repeat>
+								</ul>
+								<h:outputText value="Cena całkowita: #{zamowienieListBB.getsuma()} zł"/>
+							</p:column>
+							
+     						 <p:column priority="5">
+								<f:facet name="header">
+									<h:outputText value="fgfdgfg" />
+								</f:facet>
+								<p:commandButton value="Usuń"
+							style="margin-bottom:1em" action="#{zamowienieListBB.usunZamowienie(z)}" />
+							<p:commandButton value="Edytuj"
+							style="margin-bottom:1em"  action="#{zamowienieListBB.edit(z)}"/> <!-- action="/pages/editOrder" -->
+							</p:column>
+							
+							
+						</p:dataTable>
+					</h:form>
+				</h:panelGrid>
+			</p:fieldset>
+		
+
+	</ui:define>
+</ui:composition>
+</html>

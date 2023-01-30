@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/login-template.xhtml">
+
+	<ui:define name="content">
+	
+		<h:form>
+			<p:spacer width="20" height="auto" />
+			<h:commandButton value="Wróć na stronę główną" action="/public/home" />
+		</h:form>
+		<h:form>
+			<p:messages id="messages"  closable="true">
+				<p:autoUpdate />
+			</p:messages>
+			<h:panelGrid id="loginform" columns="2" cellpadding="5" styleClass="bottom-space">
+				<h:outputLabel for="login" value="Login:" />
+				<h:inputText id="login" value="#{loginBB.login}" required="true"
+					requiredMessage="Podaj login" />
+				<h:outputLabel for="pass" value="Hasło:" />
+				<h:inputSecret id="pass" value="#{loginBB.pass}" required="true"
+					requiredMessage="Podaj hasło" />
+
+			</h:panelGrid>		
+			<p:spacer width="20" height="auto" />
+			<h:commandButton value="Zaloguj" update="@loginform" action="#{loginBB.doLogin()}"/> <!--  action="#{loginBB.doLogin()}" -->
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+</html>

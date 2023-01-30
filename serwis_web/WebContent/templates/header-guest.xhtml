@@ -8,24 +8,18 @@
 		<h:form>
 			<p:menubar>
 				<p:menuitem icon="pi pi-home" value="Strona główna"
-					action="/pages/home?faces-redirect=true">
+					action="/public/home?faces-redirect=true">
 				</p:menuitem>
 				<p:menuitem icon="fa fa-wrench" value="Oferta"
-					action="/pages/offer?faces-redirect=true">
+					action="/public/offer?faces-redirect=true">
 				</p:menuitem>
 				<p:menuitem icon="fa fa-list-ul" value="Zamówienia"
 					action="/pages/order?faces-redirect=true">
 				</p:menuitem>
 
 				<f:facet name="options">
-					<h:outputText
-						value="Zalogowany jako: #{remoteClient.details.login}" />
-					<p:spacer width="12" height="auto" />
-				</f:facet>
-
-				<f:facet name="options">
-					<p:commandButton value="Wyloguj" action="#{loginBB.doLogout()}"
-						icon="fa fa-sign-out" />
+					<p:commandButton value="Zaloguj" action="/public/login?faces-redirect=true"
+						icon="fa fa-user" />
 				</f:facet>
 			</p:menubar>
 		</h:form>

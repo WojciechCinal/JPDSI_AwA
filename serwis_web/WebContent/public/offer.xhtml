@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/main-guest.xhtml">
+	<ui:define name="content">
+		<p:spacer width="auto" height="120" />
+		<p:messages />
+
+		<h:form>
+			<p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
+
+			<p:fieldset legend="Oferowane naprawy i usługi"
+				style="margin-bottom:10px">
+				<h:panelGrid columns="3" cellpadding="5">
+
+					<h:form id="form-table" style="margin-bottom:1em;">
+
+						<p:commandButton value="Dodaj naprawe" style="margin-bottom:1em;" />
+						<!-- action="#{personListBB.newPerson()}" -->
+
+						<p:dataTable value="#{naprawaListBB.list}" var="n">
+
+							<p:column priority="8">
+								<f:facet name="header">
+									<h:outputText value="Nazwa naprawy" />
+								</f:facet>
+								<h:outputText value="#{n.nazwaNaprawy}" />
+							</p:column>
+							<p:column priority="5">
+								<f:facet name="header">
+									<h:outputText value="Kategoria naprawy" />
+								</f:facet>
+								<h:outputText value="#{n.kategoria}" />
+							</p:column>
+							<p:column priority="3">
+								<f:facet name="header">
+									<h:outputText value="Cena" />
+								</f:facet>
+								<h:outputText value="#{n.cena}" />
+							</p:column>
+
+						</p:dataTable>
+					</h:form>
+				</h:panelGrid>
+			</p:fieldset>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

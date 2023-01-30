@@ -1,5 +1,6 @@
 package jsf.login;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -19,12 +20,14 @@ import jsf.entities.*;
 @Named
 @RequestScoped
 public class LoginBB {
-	private static final String PAGE_MAIN = "/index";
-	private static final String PAGE_LOGIN = "/login";
+	private static final String PAGE_MAIN = "/pages/home";
+	private static final String PAGE_LOGIN = "/public/login?faces-redirect=true";
+	private static final String PAGE_LOGOUT = "/public/home?faces-redirect=true";
 	private static final String PAGE_STAY_AT_THE_SAME = null;
 
 	private String login;
 	private String pass;
+
 
 	public String getLogin() {
 		return login;
@@ -54,8 +57,7 @@ public class LoginBB {
 
 		// 2. if bad login or password - stay with error info
 		if (user == null) {
-			ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
-					"Niepoprawny login lub hasło", null));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Niepoprawny login lub hasło."));
 			return PAGE_STAY_AT_THE_SAME;
 		}
 
@@ -63,14 +65,17 @@ public class LoginBB {
 		
 		RemoteClient<User> client = new RemoteClient<User>(); //create new RemoteClient
 		client.setDetails(user);
+
 		
-		List<String> roles = userDAO.getUserRolesFromDatabase(user); //get User roles 
+
+	    List<String> roles = userDAO.getUserRolesFromDatabase(user); //get User roles 
 		
 		if (roles != null) { //save roles in RemoteClient
 			for (String role: roles) {
 				client.getRoles().add(role);
 			}
 		}
+
 	
 		//store RemoteClient with request info in session (needed for SecurityFilter)
 		HttpServletRequest request = (HttpServletRequest) ctx.getExternalContext().getRequest();
@@ -88,7 +93,8 @@ public class LoginBB {
 		// - all objects within session will be destroyed
 		// - new session will be created (with new ID)
 		session.invalidate();
-		return PAGE_LOGIN;
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "INFO.", "Wylogowano pomyślnie."));
+		return PAGE_LOGOUT;
 	}
 	
 }

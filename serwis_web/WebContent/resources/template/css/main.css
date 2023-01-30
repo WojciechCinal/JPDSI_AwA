@@ -2201,7 +2201,7 @@ input, select, textarea {
 /* Form */
 
 	form {
-		margin: 0 0 2em 0;
+		margin: 0.5em 0 0.5em 0;
 	}
 
 		form.cta {
@@ -3370,6 +3370,7 @@ input, select, textarea {
 /* Header */
 
 	#page-wrapper {
+		margin: 4em;
 		padding-top: 3.5em;
 		
 	}
@@ -3862,9 +3863,9 @@ input, select, textarea {
 
 		/* Section/Article */
 
-			header p br {
+			/*header p br {
 				display: none;
-			}
+			}*/
 
 			header h2 + p {
 				font-size: 1em;
@@ -3915,9 +3916,9 @@ input, select, textarea {
 
 		/* Header */
 
-			#header {
+			/*#header {
 				display: none;
-			}
+			}*/
 
 		/* Banner */
 

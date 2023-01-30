@@ -22,6 +22,7 @@ public class RemoteClient<T> {
 	private String remoteHost;
 	private int remotePort;
 	private T details;
+	
 
 	private HashSet<String> roles = new HashSet<String>();
 

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/main-template.xhtml">
+	<ui:define name="content">
+		<p:spacer width="auto" height="120" />
+		<p:messages />
+
+		<h:form>
+			<p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
+			
+			<p:fieldset style="margin-bottom:10px">
+				<h:graphicImage class="image fit main" value="/resources/template/images/warsztat.png"></h:graphicImage>
+			</p:fieldset>
+
+			<p:fieldset legend="Lista kont" style="margin-bottom:10px">
+				<h:panelGrid columns="1" cellpadding="5">
+
+					<h:form id="form-table" style="margin-bottom:1em;">
+
+						<p:commandButton value="Dodaj nową osobę"
+							style="margin-bottom:1em;" />
+						<!-- action="#{personListBB.newPerson()}" -->
+
+						<p:dataTable value="#{userListBB.list}" var="u">
+
+							<p:column priority="5">
+								<f:facet name="header">
+									<h:outputText value="login" />
+								</f:facet>
+								<h:outputText value="#{u.login}" />
+							</p:column>
+
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="pass" />
+								</f:facet>
+								<h:outputText value="#{u.password}" />
+							</p:column>
+
+						</p:dataTable>
+					</h:form>
+				</h:panelGrid>
+			</p:fieldset>
+
+			<p:fieldset legend="Toggleable" toggleable="true" toggleSpeed="500">
+				<p:ajax event="toggle" listener="#{fieldsetView.handleToggle}"
+					update="msgs" />
+				<h:panelGrid columns="2" cellpadding="5">
+					<p:graphicImage name="demo/images/godfather/godfather2.jpg" />
+					<h:outputText
+						value="Francis Ford Coppola's legendary continuation and sequel to his landmark 1972 film, The_Godfather, parallels the young Vito Corleone's rise with his son Michael's spiritual fall, deepening The_Godfather's depiction of the dark side of the American dream."></h:outputText>
+				</h:panelGrid>
+			</p:fieldset>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

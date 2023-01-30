@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/main-template.xhtml">
+	<f:metadata>
+		<f:viewAction action="#{editOrderBB.onLoad()}" />
+	</f:metadata>
+	<ui:define name="content">
+
+		<p:spacer width="120" height="auto" />
+		<h:form rendered="#{editOrderBB.zamowienie != null}">
+			<p:messages id="messages" closable="true">
+				<p:autoUpdate />
+			</p:messages>
+			<h:panelGrid id="editformOrder" columns="2" cellpadding="5"
+				styleClass="bottom-space">
+
+				<h:outputLabel for="marka" value="Marka:" />
+				<h:inputText id="marka" value="#{editOrderBB.zamowienie.marka}"
+					required="true" requiredMessage="Podaj marke" />
+				<h:outputLabel for="model" value="Marka:" />
+				<h:inputText id="model" value="#{editOrderBB.zamowienie.model}"
+					required="true" requiredMessage="Podaj model" />
+				<h:outputLabel for="nrRejestracyjny" value="Nr rejestracyjny:" />
+				<h:inputText id="nrRejestracyjny"
+					value="#{editOrderBB.zamowienie.nrRejestracyjny}" required="true"
+					requiredMessage="Podaj nrRejestracyjny" />
+
+				<h:outputText value="Naprawy:" />
+
+				<p:selectManyButton value="#{editOrderBB.doDodania}">
+					<f:selectItems value="#{editOrderBB.getFullList()}" var="dwa"
+						itemLabel="#{dwa.nazwaNaprawy}" itemValue="#{dwa.idNaprawy}" />
+				</p:selectManyButton>
+				<p:commandButton value="Dodaj naprawy"
+					action="#{editOrderBB.DodajNaprawe()}" style="margin-right: 1em;"
+					update="@form" />
+
+
+				<p:dataTable value="#{editOrderBB.zamowienie.pomZamowienias}"
+					var="z">
+					<p:column priority="5">
+						<f:facet name="header">
+							<h:outputText value="Nazwa naprawy:" />
+						</f:facet>
+						<h:outputText value="#{z.naprawa.nazwaNaprawy}" />
+					</p:column>
+					<p:column priority="5">
+						<f:facet name="header">
+							<h:outputText value="Kategoria:" />
+						</f:facet>
+						<h:outputText value="#{z.naprawa.kategoria}" />
+					</p:column>
+					<p:column priority="5">
+						<f:facet name="header">
+							<h:outputText value="Cena: " />
+						</f:facet>
+						<h:outputText value="#{z.cena}" />
+					</p:column>
+					<p:column priority="5">
+						<f:facet name="header">
+							<h:outputText value="Marka" />
+						</f:facet>
+						<p:commandButton value="Usun z zamowienia"
+							action="#{editOrderBB.UsunNaprawe(z)}" style="margin-right: 1em;" />
+					</p:column>
+				</p:dataTable>
+
+
+			</h:panelGrid>
+			<p:spacer width="20" height="auto" />
+			<p:commandButton value="Zapisz" action="#{editOrderBB.saveData()}"
+				style="margin-right: 1em;" update="@form" />
+			<p:button value="Anuluj" outcome="order" />
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+</html>
