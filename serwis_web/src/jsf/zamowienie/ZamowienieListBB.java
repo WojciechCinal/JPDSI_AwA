@@ -9,12 +9,15 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 import javax.servlet.http.HttpSession;
+
+import org.primefaces.model.LazyDataModel;
 
 import jsf.dao.*;
 import jsf.entities.*;
@@ -29,6 +32,7 @@ public class ZamowienieListBB {
 
 	private String idZamowienia;
 	private Double suma;
+ //   private LazyDataModel<Zamowienie> lazyModel;
 
 	@Inject
 	ExternalContext extcontext;
@@ -119,5 +123,6 @@ public class ZamowienieListBB {
         flash.put("zamowienie", zamowienie);
         return "/pages/editOrder?faces-redirect=true";
     }
+	
 
 }

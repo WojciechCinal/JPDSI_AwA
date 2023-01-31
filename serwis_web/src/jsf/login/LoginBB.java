@@ -1,13 +1,10 @@
 package jsf.login;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.faces.context.Flash;
 import javax.faces.simplesecurity.RemoteClient;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -20,8 +17,7 @@ import jsf.entities.*;
 @Named
 @RequestScoped
 public class LoginBB {
-	private static final String PAGE_MAIN = "/pages/home";
-	private static final String PAGE_LOGIN = "/public/login?faces-redirect=true";
+	private static final String PAGE_MAIN = "/pages/home";;
 	private static final String PAGE_LOGOUT = "/public/home?faces-redirect=true";
 	private static final String PAGE_STAY_AT_THE_SAME = null;
 

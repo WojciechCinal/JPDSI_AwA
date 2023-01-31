@@ -23,38 +23,41 @@
 					<p:commandButton value="Dodaj zamówienie"
 						style="margin-bottom:1em;" action="#{zamowienieListBB.Add()}" />
 
-					<p:dataTable value="#{zamowienieListBB.list}" var="z">
+					<p:dataTable value="#{zamowienieListBB.list}" var="z"
+						paginator="true" rows="5" rowsPerPageTemplate="5,10,15" id="form-table">
 
-						<p:column headerText="Dodano przez:" style="width:7%;">
+						<p:column headerText="Dodano przez:" sortBy="#{z.user.login}">
 							<h:outputText value="#{z.user.login}" />
 						</p:column>
-
-						<p:column headerText="Data" style="width:6%;">
+						<p:column headerText="Data" sortBy="#{z.data}"
+							filterBy="#{z.data}">
 							<h:outputText value="#{z.data}" />
 						</p:column>
 
-						<p:column headerText="Marka" style="width:15%;">
-							<!-- sortBy="#{z.marka}"  -->
+						<p:column headerText="Marka" sortBy="#{z.marka}"
+							filterBy="#{z.marka}">
 							<h:outputText value="#{z.marka}" />
 						</p:column>
 
-						<p:column headerText="Model" style="width:15%;">
+						<p:column headerText="Model" sortBy="#{z.model}"
+							filterBy="#{z.model}">
 							<h:outputText value="#{z.model}" />
 						</p:column>
 
-						<p:column headerText="Numer rejestracyjny" style="width:10%;">
+						<p:column headerText="Numer rejestracyjny"
+							 filterBy="#{z.nrRejestracyjny}">
 							<h:outputText value="#{z.nrRejestracyjny}" />
 						</p:column>
 
-						<p:column headerText="Lista napraw" style="width:33%;">
+						<p:column headerText="Lista napraw" style="width:30%;">
 							<h:outputText value="#{zamowienieListBB.resetsuma()}" />
 							<ul>
 								<ui:repeat value="#{z.pomZamowienias}" var="y">
 
-									<li><h:outputText value="#{y.naprawa.nazwaNaprawy} (#{y.naprawa.kategoria}) " /> 
-									<h:outputText style="float:right"
-											value=" #{y.cena} zł" /></li>
-									<h:outputText  value="#{zamowienieListBB.addsuma(y.cena)}" />
+									<li><h:outputText
+											value="#{y.naprawa.nazwaNaprawy} (#{y.naprawa.kategoria}) " />
+										<h:outputText style="float:right" value=" #{y.cena} zł" /></li>
+									<h:outputText value="#{zamowienieListBB.addsuma(y.cena)}" />
 
 								</ui:repeat>
 							</ul>
@@ -66,7 +69,8 @@
 							<p:commandButton icon="fa fa-trash" value="Usuń"
 								style="margin:0.5em; margin-left:0.8em;"
 								action="#{zamowienieListBB.usunZamowienie(z)}">
-								<p:confirm header="Potwierdz wybór" message="Czy chcesz usunąć zamówienie?" />
+								<p:confirm header="Potwierdz wybór"
+									message="Czy chcesz usunąć zamówienie?" />
 							</p:commandButton>
 							<p:commandButton icon="fa fa-edit" value="Edytuj"
 								style="margin:0.5em;" action="#{zamowienieListBB.edit(z)}" />
