@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition template="/templates/main-template.xhtml">
+	<ui:define name="content">
+
+		<p:spacer width="auto" height="120" />
+		<p:messages />
+
+
+		<p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
+
+		<p:fieldset legend="Oferowane naprawy" style="margin-bottom:10px">
+			<h:panelGrid columns="6" cellpadding="5">
+
+				<h:form id="form-table" style="margin-bottom:1em;">
+					<p:commandButton value="Dodaj naprawę"
+						style="margin-bottom:1em;" action="/pages/admin/addOffer?faces-redirect=true"/>
+
+					<p:dataTable value="#{naprawaListBB.list}" var="n">
+
+						<p:column headerText="Nazwa naprawy" >					
+							<h:outputText value="#{n.nazwaNaprawy}" />
+						</p:column>
+
+						<p:column headerText="Kategoria" style="width:15%;">
+							<h:outputText value="#{n.kategoria}" />
+						</p:column>
+
+						<p:column headerText="Cena usługi" style="width:10%;">
+							<h:outputText value="#{n.cena}" />
+						</p:column>
+
+						<p:column headerText="Opcje" style="width:7%;">
+							<p:commandButton icon="fa fa-edit" value="Edytuj"
+								style="margin:0.5em;" action="#{naprawaListBB.edit(n)}" />
+						</p:column>
+
+					</p:dataTable>
+
+				</h:form>
+			</h:panelGrid>
+		</p:fieldset>
+
+
+	</ui:define>
+</ui:composition>
+</html>

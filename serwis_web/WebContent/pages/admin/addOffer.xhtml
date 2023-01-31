@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/main-template.xhtml">
+
+	<ui:define name="content">
+
+		<p:spacer width="120" height="auto" />
+
+		<h:form>
+			<p:messages id="messages" closable="true">
+				<p:autoUpdate />
+			</p:messages>
+
+			<h:panelGrid id="addformOffer" columns="2" cellpadding="5"
+				styleClass="bottom-space">
+
+				<h:outputLabel for="nazwa" value="Nazwa naprawy:" />
+				<h:inputText id="nazwa" value="#{addOfferBB.nazwa}" required="true"
+					requiredMessage="Podaj nazwę naprawy." />
+
+				<p:outputLabel for="kategoria" value="Kategoria naprawy:" />
+				<p:selectOneMenu id="kategoria" value="#{addOfferBB.kategoria}" style="width:250px">
+					<f:selectItem itemLabel="Usługi wulkanizacyjne"
+						itemValue="Usługi wulkanizacyjne" />
+					<f:selectItem itemLabel="Usługa serwisowa"
+						itemValue="Usługa serwisowa" />
+					<f:selectItem itemLabel="Lakierniczo - blacharskie"
+						itemValue="Lakierniczo - blacharskie" />
+					<f:selectItem itemLabel="Układ spalinowy"
+						itemValue="Układ spalinowy" />
+				</p:selectOneMenu>
+
+				<h:outputLabel for="cena" value="Cena:" />
+				<h:inputText id="cena" value="#{addOfferBB.cena}" required="true"
+					requiredMessage="Podaj cenę naprawy." />
+
+			</h:panelGrid>
+
+			<p:spacer width="20" height="auto" />
+			<p:commandButton value="Dodaj naprawę do oferty" action="#{addOfferBB.Add()}"
+				style="margin-right: 1em; margin-bottom:1em;" />
+			<p:button value="Anuluj" outcome="/pages/offer" />
+			
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+</html>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/main-template.xhtml">
+	<f:metadata>
+		<f:viewAction action="#{editOfferBB.onLoad()}" />
+	</f:metadata>
+	<ui:define name="content">
+
+		<p:spacer width="120" height="auto" />
+		<h:form rendered="#{editOfferBB.naprawa != null}">
+			<p:messages id="messages" closable="true">
+				<p:autoUpdate />
+			</p:messages>
+			<h:panelGrid id="editformOffer" columns="2" cellpadding="5"
+				styleClass="bottom-space">
+
+				<h:outputLabel for="nazwa" value="Nazwa naprawy: "/> <h:outputLabel value= "#{editOfferBB.naprawa.nazwaNaprawy}"/>
+				
+				<h:outputLabel for="kategoria" value="Kategoria: " /> <h:outputLabel value= "#{editOfferBB.naprawa.kategoria}"/>
+				
+				<h:outputLabel for="cena" value="Cena:" />
+				<h:inputText id="cena"
+					value="#{editOfferBB.naprawa.cena}" required="true"
+					requiredMessage="Podaj cenę naprawy." />
+
+			</h:panelGrid>
+			
+			<p:spacer width="20" height="auto" />
+			<p:commandButton value="Zapisz" action="#{editOfferBB.saveData()}"
+				style="margin-right: 1em;" update="@form" />
+			<p:button value="Anuluj" outcome="/pages/offer" />
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+</html>

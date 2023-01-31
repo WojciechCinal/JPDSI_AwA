@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/main-guest.xhtml">
+	<ui:define name="content">
+		<p:spacer width="auto" height="80" />
+		<p:messages />
+
+		<h:form>
+			<p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
+
+			<p:fieldset style="margin-bottom:10px">
+				<h:graphicImage class="image fit main"
+					value="/resources/template/images/warsztat.png"></h:graphicImage>
+			</p:fieldset>
+		</h:form>
+		<p:spacer width="auto" height="10" />
+		<div class="container">
+			<div class="row" style="text-align: justify;">
+				<div class="col-4 col-12-medium">
+
+					<h3>Historia naszego warsztatu.</h3>
+					<p>Kraków 2002 rok, to tutaj wszystko się zaczęło...</p>
+
+				</div>
+				<div class="col-4 col-12-medium">
+					<p>Nasz serwis został założony przez pasjonatów mechaniki
+						samochodowej: Jana Nowaka i Jakuba Kowalskiego, którzy nadal mają
+						ogromny wpływ na rozwój naszej firmy.</p>
+				</div>
+				<div class="col-4 col-12-medium">
+					<p>Nasz warsztat zatrudnia wysokiej klasy specjalistów branży
+						motoryzacyjnej. Dzięki naszym mechanikom, którzy swoją pasję łączą
+						z pracą, udało się nam zdobyć już dwunastą nagrodę WARSZRATU ROKU!
+					</p>
+				</div>
+			</div>
+		</div>
+		<p:spacer width="auto" height="10" />
+		<h:form>
+		
+			<div class="container" style="text-align:center;">
+
+				<h2>Oferowane usługi</h2>
+				<h3>Twój samochód potrzebuje naprawy?</h3>
+
+				<p>Wiemy, że zepsuty samochód to duży problem. Dlatego tu
+					jesteśmy, naprawimy go tak szybko, jak to tylko możliwe.</p>
+
+				<h:commandButton style="margin-bottom:1em;"
+					value="Sprawdz naszą ofertę" action="/public/offer" />
+
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
